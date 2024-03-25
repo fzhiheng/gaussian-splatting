@@ -47,10 +47,10 @@ class ParamGroup:
 class ModelParams(ParamGroup): 
     def __init__(self, parser, sentinel=False):
         self.sh_degree = 3
-        self._source_path = ""
+        self._source_path = "/home/fzh/MyWork/my_research/3DGS/dataset/segment-102751"
         self._model_path = ""
         self._images = "images"
-        self._resolution = -1
+        self._resolution = 4
         self._white_background = False
         self.data_device = "cuda"
         self.eval = False

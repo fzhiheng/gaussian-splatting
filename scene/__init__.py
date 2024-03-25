@@ -48,6 +48,7 @@ class Scene:
         else:
             assert False, "Could not recognize scene type!"
 
+        # ====> 文件备份
         if not self.loaded_iter:
             with open(scene_info.ply_path, 'rb') as src_file, open(os.path.join(self.model_path, "input.ply") , 'wb') as dest_file:
                 dest_file.write(src_file.read())
@@ -66,8 +67,10 @@ class Scene:
             random.shuffle(scene_info.train_cameras)  # Multi-res consistent random shuffling
             random.shuffle(scene_info.test_cameras)  # Multi-res consistent random shuffling
 
+        # 所有相机的中心点位置到最远camera的距离
         self.cameras_extent = scene_info.nerf_normalization["radius"]
 
+        # 读取图片，计算投影矩阵等等
         for resolution_scale in resolution_scales:
             print("Loading Training Cameras")
             self.train_cameras[resolution_scale] = cameraList_from_camInfos(scene_info.train_cameras, resolution_scale, args)
